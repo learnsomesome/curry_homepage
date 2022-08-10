@@ -1,6 +1,5 @@
 import { Dropdown, Input } from "@nextui-org/react";
-import { useMemo } from "react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Baidu, Google, Search } from "../assets";
 
 const browsers: Record<string, any> = {
@@ -38,7 +37,7 @@ const SearchInput = () => {
         width: "100%",
       }}
     >
-      <Dropdown>
+      <Dropdown disableAnimation>
         <Dropdown.Button light>{browsers[selectedValue].icon}</Dropdown.Button>
         <Dropdown.Menu
           aria-label="browser select"
