@@ -28,6 +28,15 @@ const SearchInput = () => {
     return value;
   }, [selected]);
 
+  const onSearch = () => {
+    if (value.trim()) {
+      window.location.href =
+        browsers[selectedValue].url + encodeURIComponent(value.trim());
+    }
+
+    setValue("");
+  };
+
   return (
     <div
       style={{
@@ -54,23 +63,21 @@ const SearchInput = () => {
       </Dropdown>
       <Input
         aria-label="search input"
+        type="search"
         css={{ mw: 584, flex: 1, ml: 8 }}
         size="lg"
         clearable
+        contentClickable
         placeholder="Please enter"
         contentLeftStyling={false}
         value={value}
         contentRight={<Search />}
         onChange={(e) => setValue(e.target.value)}
         onKeyUp={(e) => {
-          if (e.code === "Enter") {
-            if (value.trim()) {
-              window.location.href =
-                browsers[selectedValue].url + encodeURIComponent(value.trim());
-            }
-
-            setValue("");
-          }
+          if (e.code === "Enter") onSearch();
+        }}
+        onContentClick={(key) => {
+          if (key === "right") onSearch();
         }}
       />
     </div>
