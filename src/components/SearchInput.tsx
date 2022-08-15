@@ -1,12 +1,17 @@
 import { Dropdown, Input } from "@nextui-org/react";
 import { useState, useMemo } from "react";
-import { Baidu, Google, Search } from "../assets";
+import { Baidu, Bing, Google, Search } from "../assets";
 
 const browsers: Record<string, any> = {
   Baidu: {
     key: "Baidu",
     icon: <Baidu />,
     url: "https://www.baidu.com/s?wd=",
+  },
+  Bing: {
+    key: "Bing",
+    icon: <Bing />,
+    url: "https://cn.bing.com/search?q=",
   },
   Google: {
     key: "Google",
@@ -49,7 +54,7 @@ const SearchInput = () => {
       <Dropdown disableAnimation>
         <Dropdown.Button light>{browsers[selectedValue].icon}</Dropdown.Button>
         <Dropdown.Menu
-          aria-label="browser select"
+          aria-label="browser-select"
           selectionMode="single"
           selectedKeys={selected}
           onSelectionChange={setSelected as any}
@@ -62,8 +67,7 @@ const SearchInput = () => {
         </Dropdown.Menu>
       </Dropdown>
       <Input
-        aria-label="search input"
-        type="search"
+        aria-label="search-input"
         css={{ mw: 584, flex: 1, ml: 8 }}
         size="lg"
         clearable

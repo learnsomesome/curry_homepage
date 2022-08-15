@@ -4,3 +4,7 @@ export { ReactComponent as Github } from "./github.svg";
 export { ReactComponent as Search } from "./search.svg";
 export { ReactComponent as Baidu } from "./baidu.svg";
 export { ReactComponent as Google } from "./google.svg";
+export { ReactComponent as Bing } from "./bing.svg";
+export { ReactComponent as Edit } from "./edit.svg";
+export { ReactComponent as Image } from "./image.svg";
+export { ReactComponent as Palette } from "./palette.svg";

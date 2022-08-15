@@ -2,9 +2,17 @@
   .operation {
     a {
       cursor: pointer;
-      margin-left: 16px;
+      padding-left: 12px;
       transition: opacity 0.2s ease;
       opacity: 0.6;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      svg {
+        vertical-align: sub;
+      }
 
       &:hover {
         opacity: 1;
