@@ -5,6 +5,14 @@ export type BgItem = {
   source?: string | File;
 };
 
+export type FavoritePage = {
+  key: string;
+  name: string;
+  address: string;
+};
+
+export const URL_REG_EXP = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+
 export const defaultBgList = [
   { id: "color-dark-yellow", label: "Dark Yellow", color: "#E2BE6E" },
   { id: "color-light-green", label: "Light Green", color: "#ABC992" },
@@ -40,4 +48,22 @@ export const formatItemToBackground = (bgItem: BgItem) => {
   return `${bgItem.color || ""} url("${
     bgItem.source || ""
   }") center/cover no-repeat`;
+};
+
+/** 判断是否为移动端 */
+export const isMobile = () => {
+  let mobileFlag = false;
+
+  if (
+    navigator.userAgent.match(
+      /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    )
+  ) {
+    mobileFlag = true;
+  }
+  if (document.body.clientWidth < 800) {
+    mobileFlag = true;
+  }
+
+  return mobileFlag;
 };

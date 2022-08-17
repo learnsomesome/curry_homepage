@@ -9,3 +9,7 @@
 
 - 🎴 Background Toggle
 - 🔍 Basic Search (add Bing)
+
+## 1.2.0
+
+- ⭐ Favorite Pages Editor

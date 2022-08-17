@@ -8,3 +8,6 @@ export { ReactComponent as Bing } from "./bing.svg";
 export { ReactComponent as Edit } from "./edit.svg";
 export { ReactComponent as Image } from "./image.svg";
 export { ReactComponent as Palette } from "./palette.svg";
+export { ReactComponent as Star } from "./star.svg";
+export { ReactComponent as Delete } from "./delete.svg";
+export { ReactComponent as Close } from "./close.svg";

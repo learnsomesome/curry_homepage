@@ -1,4 +1,4 @@
-import { Dropdown, Input } from "@nextui-org/react";
+import { Dropdown, Input, Row } from "@nextui-org/react";
 import { useState, useMemo } from "react";
 import { Baidu, Bing, Google, Search } from "../assets";
 
@@ -43,14 +43,7 @@ const SearchInput = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
+    <Row justify="space-between">
       <Dropdown disableAnimation>
         <Dropdown.Button light>{browsers[selectedValue].icon}</Dropdown.Button>
         <Dropdown.Menu
@@ -68,7 +61,7 @@ const SearchInput = () => {
       </Dropdown>
       <Input
         aria-label="search-input"
-        css={{ mw: 584, flex: 1, ml: 8 }}
+        css={{ flex: 1, ml: 8 }}
         size="lg"
         clearable
         contentClickable
@@ -84,7 +77,7 @@ const SearchInput = () => {
           if (key === "right") onSearch();
         }}
       />
-    </div>
+    </Row>
   );
 };
 
