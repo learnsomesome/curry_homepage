@@ -57,7 +57,10 @@ const BackgroundSwitcher = ({
           width="60%"
           css={{ mh: 520, ov: "hidden" }}
           open={visible}
-          onClose={() => setVisible(false)}
+          onClose={() => {
+            document.body.removeAttribute("style");
+            setVisible(false);
+          }}
         >
           <Modal.Header justify="flex-start">
             <Text b h4 css={{ pl: 12 }}>
@@ -67,12 +70,7 @@ const BackgroundSwitcher = ({
           <Modal.Body>
             <Grid.Container gap={2} justify="flex-start">
               {list.map((item) => (
-                <Grid
-                  key={item.id}
-                  xs={12}
-                  sm={3}
-                  css={{ position: "relative" }}
-                >
+                <Grid key={item.id} sm={3} css={{ position: "relative" }}>
                   <Checkbox
                     aria-label="background-switch-check"
                     isRounded

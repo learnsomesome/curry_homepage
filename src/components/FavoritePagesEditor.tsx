@@ -36,6 +36,11 @@ const FavoritePagesEditor = ({
     address: "",
   });
 
+  const addDisabled =
+    formInit ||
+    Object.values(errors).some(Boolean) ||
+    favoritePages.length === 10;
+
   const resetForm = () => {
     setFormValue({
       name: "",
@@ -112,6 +117,7 @@ const FavoritePagesEditor = ({
           css={{ mh: "90vh", ov: "hidden" }}
           open={visible}
           onClose={() => {
+            document.body.removeAttribute("style");
             setVisible(false);
             resetForm();
           }}
@@ -138,6 +144,9 @@ const FavoritePagesEditor = ({
                     return { ...pre, name: e.target.value };
                   })
                 }
+                onKeyUp={(e) => {
+                  if (e.code === "Enter" && !addDisabled) addToList();
+                }}
               />
               <Spacer x={2} />
               <Input
@@ -155,17 +164,16 @@ const FavoritePagesEditor = ({
                     return { ...pre, address: e.target.value };
                   })
                 }
+                onKeyUp={(e) => {
+                  if (e.code === "Enter" && !addDisabled) addToList();
+                }}
               />
               <Spacer x={2} />
               <Button
                 flat
                 ghost
                 size="sm"
-                disabled={
-                  formInit ||
-                  Object.values(errors).some(Boolean) ||
-                  favoritePages.length === 10
-                }
+                disabled={addDisabled}
                 onPress={addToList}
               >
                 Add to List

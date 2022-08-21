@@ -19,6 +19,7 @@ import FavoritePagesEditor from "./components/FavoritePagesEditor";
 import { useFavorite } from "./hooks/useFavorite";
 import FavoritePagesList from "./components/FavoritePagesList";
 import IconButton from "./components/IconButton";
+import PagesSummary from "./components/PagesSummary";
 
 function App() {
   const [{ themeStr, theme }, { toggleColorScheme }] = useTheme();
@@ -45,9 +46,8 @@ function App() {
         direction="column"
         wrap="nowrap"
         css={{
-          h: "100vh",
+          minHeight: "100vh",
           p: 32,
-          ov: "auto",
           bg: bg.id ? formatItemToBackground(bgItem as BgItem) : "",
         }}
       >
@@ -88,6 +88,7 @@ function App() {
           />
         </Grid.Container>
       </Grid.Container>
+      <PagesSummary />
       <FavoritePagesEditor
         favoritePages={favoritePages}
         addFavorite={addFavorite}

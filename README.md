@@ -10,6 +10,7 @@
 - 🌙 Color Scheme Toggle (supported Light/Dark)
 - 🎴 Background Toggle (supported customize color/image)
 - ⭐ Favorite Pages Editor
+- 📜 Common Pages Navigation
 
 ### ⚠️ Precautions
 

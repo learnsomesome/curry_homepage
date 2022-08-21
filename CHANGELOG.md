@@ -13,3 +13,7 @@
 ## 1.2.0
 
 - ⭐ Favorite Pages Editor
+
+## 1.3.0
+
+- 📜 Common Pages Navigation
