@@ -9,6 +9,7 @@ import {
   Grid,
   Link,
   Spacer,
+  Badge,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { Close, Search, Website } from "../assets";
@@ -34,11 +35,10 @@ const PagesSummary = () => {
 
     if (value) {
       const matchedIndexList = pages
-        .filter((page) => page.name.toLowerCase().includes(value))
+        .filter((page) => page.name.match(new RegExp(value, "i")))
         .map((item) => item.rootKey);
 
       if (matchedIndexList.length > 0) {
-        console.log("ss", matchedIndexList, expandedList);
         setExpandedList((pre) =>
           pre.map((item, index) => matchedIndexList.includes(index + 1))
         );
@@ -114,8 +114,7 @@ const PagesSummary = () => {
             placeholder="Search for page"
             contentLeft={<Search />}
             onKeyUp={(e: any) => {
-              if (e.code === "Enter")
-                onSearch(e.target.value.trim().toLowerCase() as string);
+              if (e.code === "Enter") onSearch(e.target.value.trim() as string);
             }}
           />
         </Card.Header>
@@ -139,30 +138,44 @@ const PagesSummary = () => {
                 title={<Text h5>{item.title}</Text>}
               >
                 <Grid.Container gap={1}>
-                  {item.pages.map((page: any) => (
-                    <Grid key={page.name} sm={4}>
-                      <Link
-                        href={page.address}
-                        css={{ d: "flex", alignItems: "center" }}
-                      >
-                        <FaviconImage
-                          render={!!expandedList[index]}
-                          url={page.address}
-                        />
-                        <Text
-                          h6
-                          color={
-                            keyword && page.name.toLowerCase().includes(keyword)
-                              ? "warning"
-                              : "unset"
-                          }
-                          css={{ ml: 6 }}
+                  {item.pages.map((page: any) => {
+                    const reg = new RegExp(keyword, "i");
+                    const matched = page.name.match(reg);
+
+                    return (
+                      <Grid key={page.name} sm={4}>
+                        <Link
+                          href={page.address}
+                          css={{ d: "flex", alignItems: "center" }}
                         >
-                          {page.name}
-                        </Text>
-                      </Link>
-                    </Grid>
-                  ))}
+                          {keyword && matched && (
+                            <Badge
+                              color="success"
+                              variant="dot"
+                              css={{ mr: 4 }}
+                            />
+                          )}
+                          <FaviconImage
+                            render={!!expandedList[index]}
+                            url={page.address}
+                          />
+                          <Text
+                            h6
+                            css={{ ml: 6 }}
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                keyword && matched
+                                  ? page.name.replace(
+                                      reg,
+                                      `<span style="color: var(--nextui-colors-success);">${matched[0]}</span>`
+                                    )
+                                  : page.name,
+                            }}
+                          />
+                        </Link>
+                      </Grid>
+                    );
+                  })}
                 </Grid.Container>
               </Collapse>
             ))}
