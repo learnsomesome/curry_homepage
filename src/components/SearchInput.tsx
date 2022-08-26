@@ -44,7 +44,7 @@ const SearchInput = () => {
 
   return (
     <Row justify="space-between">
-      <Dropdown disableAnimation>
+      <Dropdown>
         <Dropdown.Button light>{browsers[selectedValue].icon}</Dropdown.Button>
         <Dropdown.Menu
           aria-label="browser-select"
