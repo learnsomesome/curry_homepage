@@ -1,5 +1,5 @@
-import { Grid, Spacer, Text } from "@nextui-org/react";
-import { Close } from "../assets";
+import { Grid, Row, Spacer, Text } from "@nextui-org/react";
+import { Add, Close } from "../assets";
 import { FavoritePage } from "../utils";
 import FaviconImage from "./FaviconImage";
 import IconButton from "./IconButton";
@@ -7,9 +7,11 @@ import IconButton from "./IconButton";
 const FavoritePagesList = ({
   favoritePages,
   deleteFavorite,
+  openModal,
 }: {
   favoritePages: FavoritePage[];
   deleteFavorite: (key: string) => void;
+  openModal: VoidFunction;
 }) => {
   return favoritePages.length > 0 ? (
     <Grid.Container css={{ pl: 90 }}>
@@ -65,7 +67,27 @@ const FavoritePagesList = ({
         </Grid.Container>
       ))}
     </Grid.Container>
-  ) : null;
+  ) : (
+    <Grid.Container justify="center" css={{ pl: 90 }}>
+      <Row
+        title="Add your favorite pages"
+        justify="center"
+        align="center"
+        css={{
+          w: 112,
+          h: 112,
+          borderRadius: 8,
+          "&:hover": {
+            cursor: "pointer",
+            backgroundColor: "#80808054",
+          },
+        }}
+        onClick={openModal}
+      >
+        <Add width={36} />
+      </Row>
+    </Grid.Container>
+  );
 };
 
 export default FavoritePagesList;

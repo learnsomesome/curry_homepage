@@ -7,7 +7,7 @@ import {
   Spacer,
   Text,
 } from "@nextui-org/react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Github, Moon, Sun } from "./assets";
 import SearchInput from "./components/SearchInput";
 import BackgroundSwitcher from "./components/BackgroundSwitcher";
@@ -22,6 +22,7 @@ import IconButton from "./components/IconButton";
 import PagesSummary from "./components/PagesSummary";
 
 function App() {
+  const [fpVisible, setFpVisible] = useState(false);
   const [{ themeStr, theme }, { toggleColorScheme }] = useTheme();
   const [{ favoritePages }, { addFavorite, deleteFavorite }] = useFavorite();
   const [{ bg }, { updateBgId, updateBgList }] = useBg();
@@ -85,11 +86,14 @@ function App() {
           <FavoritePagesList
             favoritePages={favoritePages}
             deleteFavorite={deleteFavorite}
+            openModal={() => setFpVisible(true)}
           />
         </Grid.Container>
       </Grid.Container>
       <PagesSummary />
       <FavoritePagesEditor
+        visible={fpVisible}
+        setVisible={setFpVisible}
         favoritePages={favoritePages}
         addFavorite={addFavorite}
         deleteFavorite={deleteFavorite}

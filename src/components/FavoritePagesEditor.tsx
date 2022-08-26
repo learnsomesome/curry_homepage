@@ -18,15 +18,18 @@ import FaviconImage from "./FaviconImage";
 let formInit = true;
 
 const FavoritePagesEditor = ({
+  visible,
+  setVisible,
   favoritePages,
   addFavorite,
   deleteFavorite,
 }: {
+  visible: boolean;
+  setVisible: (v: boolean) => void;
   favoritePages: FavoritePage[];
   addFavorite: (page: FavoritePage) => void;
   deleteFavorite: (key: string) => void;
 }) => {
-  const [visible, setVisible] = useState(false);
   const [formValue, setFormValue] = useState({
     name: "",
     address: "",

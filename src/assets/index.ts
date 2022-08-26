@@ -12,3 +12,4 @@ export { ReactComponent as Star } from "./star.svg";
 export { ReactComponent as Delete } from "./delete.svg";
 export { ReactComponent as Close } from "./close.svg";
 export { ReactComponent as Website } from "./website.svg";
+export { ReactComponent as Add } from "./add.svg";
